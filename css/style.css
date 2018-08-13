@@ -1,0 +1,56 @@
+header, main, footer {
+  width: 100%;
+  height: auto;
+  /* display: block; */
+  vertical-align: top;
+}
+
+
+aside {
+  background-color: red;
+  height: 400px;
+  width: 20%;
+  display: inline-block;
+}
+
+nav {
+  width: 100%;
+  height: 100px;
+  background-color: blue;
+}
+
+footer {
+  width: 100%;
+  height: 80px;
+  background-color: greenyellow;
+}
+.vote-wrapper {
+  vertical-align: top;
+  display: inline-block;
+  width: 79.7%;
+  height: 400px;
+  background-color: yellow;
+}
+
+.vote-content {
+  vertical-align: top;
+  display: inline-block;
+  height: 300px;
+  width: 100%;
+  background-color: olive;
+  text-align: center;
+}
+
+.vote-content img {
+  display: inline-block;
+  height: 100%;
+  width: 30%;
+  margin: 0px 10px;
+}
+
+.button-wrapper {
+  width: 100%;
+  height: 100px;
+  background-color: aqua;
+  display: inline-block;
+}
