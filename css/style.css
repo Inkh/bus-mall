@@ -43,7 +43,7 @@ footer {
 .vote-content img {
   display: inline-block;
   height: 80%;
-  width: 30%;
+  max-width: 30%;
   margin: 28px 10px;
   line-height: 80%;
 }

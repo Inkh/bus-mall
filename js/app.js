@@ -33,22 +33,35 @@ var usb = new Product('img/usb.gif');
 var waterCan = new Product('img/water-can.jpg');
 var wineGlass = new Product('img/wine-glass.jpg');
 
+var indexList = [];
+
+//Create three randomly generated indices.
 function displayThreeProducts(){
-  var indexList = [];
   var randIndexOne = Math.floor(Math.random() * Product.allProducts.length);
   var randIndexTwo = Math.floor(Math.random() * Product.allProducts.length);
   var randIndexThree = Math.floor(Math.random() * Product.allProducts.length);
 
+  //Check if any indexes are duplicate or exists in prior rotation.
+  while (indexList.includes(randIndexOne)){
+    randIndexOne = Math.floor(Math.random() * Product.allProducts.length);
+  }
   indexList.push(randIndexOne);
-  while (randIndexTwo === randIndexOne){
+  while (randIndexTwo === randIndexOne || indexList.includes(randIndexTwo)){
     randIndexTwo = Math.floor(Math.random() * Product.allProducts.length);
   }
   indexList.push(randIndexTwo);
 
-  while (randIndexThree === randIndexTwo || randIndexThree === randIndexOne){
+  while (indexList.includes(randIndexThree)){
     randIndexThree = Math.floor(Math.random() * Product.allProducts.length);
   }
   indexList.push(randIndexThree);
+
+  //If this is the first rotation, length will only be three. Every iteration afterwards the length will be three, so get rid of the first three elements of array.
+  if (indexList.length > 3){
+    indexList.splice(0,3);
+  }
+
+  console.log(indexList);
 
   var contentField = document.getElementsByClassName('vote-content')[0];
 
