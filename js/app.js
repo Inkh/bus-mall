@@ -39,7 +39,7 @@ function createProducts(){
 createProducts();
 
 var indexList = [];
-
+var voteCount = 0;
 
 //Create three randomly generated indices.
 function displayThreeProducts(){
@@ -77,6 +77,7 @@ function displayThreeProducts(){
 
   var contentField = document.getElementsByClassName('vote-content')[0];
 
+  
   indexList.forEach(function(index){
     var picture = document.createElement('img');
     Product.allProducts[index].appearCount++;
@@ -88,8 +89,15 @@ function displayThreeProducts(){
       clearNode();
       displayThreeProducts();
       renderList();
+      voteCount++;
     });
   });
+  if (voteCount === 24){
+    clearNode();
+    var h1 = document.createElement('h1');
+    h1.textContent = 'Thank you for participating!';
+    contentField.append(h1);
+  }
 }
 
 displayThreeProducts();
