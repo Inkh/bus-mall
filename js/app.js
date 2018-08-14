@@ -40,8 +40,15 @@ createProducts();
 
 var indexList = [];
 
+
 //Create three randomly generated indices.
 function displayThreeProducts(){
+  //Function for clearing node
+  function clearNode(){
+    while (contentField.firstChild){
+      contentField.removeChild(contentField.firstChild);
+    }
+  }
   var randIndexOne = Math.floor(Math.random() * Product.allProducts.length);
   var randIndexTwo = Math.floor(Math.random() * Product.allProducts.length);
   var randIndexThree = Math.floor(Math.random() * Product.allProducts.length);
@@ -72,32 +79,32 @@ function displayThreeProducts(){
 
   indexList.forEach(function(index){
     var picture = document.createElement('img');
+    Product.allProducts[index].appearCount++;
     picture.src = Product.allProducts[index].filename;
     contentField.append(picture);
     picture.addEventListener('click', function(){
       console.log(picture);
       Product.allProducts[index].votes++;
+      clearNode();
+      displayThreeProducts();
+      renderList();
     });
   });
-  // for (var i = 0;i < indexList.length;i++){
-  //   var picture = document.createElement('img');
-  //   Product.allProducts[indexList[i]].appearCount += 1;
-  //   picture.src = Product.allProducts[indexList[i]].filename;
-  //   contentField.append(picture);
-  // }
 }
 
 displayThreeProducts();
 
-// var displayedImages = document.getElementsByClassName('selection');
-// console.log(displayedImages[2]);
-
-// for (var i = 0; i < displayedImages.length;i++){
-//   displayedImages[i].addEventListener('click', function(){
-//     doSomething(i);
-//   });
-// }
-
-// function doSomething(index){
-//   console.log(index);
-// }
+function renderList(){
+  var field = document.getElementsByTagName('aside')[0];
+  while (field.firstChild){
+    field.removeChild(field.firstChild);
+  }
+  var ul = document.createElement('ul');
+  for (var i = 0; i < Product.allProducts.length;i++){
+    var currProduct = Product.allProducts[i];
+    var li = document.createElement('li');
+    li.textContent = `${currProduct.name}. Votes: ${currProduct.votes}. Appearances: ${currProduct.appearCount}.`;
+    ul.append(li);
+  }
+  field.append(ul);
+}
