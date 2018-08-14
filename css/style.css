@@ -48,6 +48,10 @@ footer {
   line-height: 80%;
 }
 
+.vote-content img:hover {
+  cursor: pointer;
+}
+
 .button-wrapper {
   vertical-align: top;
   width: 100%;

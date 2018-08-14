@@ -2,7 +2,8 @@
 
 console.log('link');
 
-function Product(filename){
+function Product(name, filename){
+  this.name = name;
   this.filename = filename;
   this.votes = 0;
   this.appearCount = 0;
@@ -12,26 +13,30 @@ function Product(filename){
 Product.allProducts = [];
 
 // All products constructed.
-var bag = new Product('img/bag.jpg');
-var banana = new Product('img/banana.jpg');
-var bathroom = new Product('img/bathroom.jpg');
-var boots = new Product('img/boots.jpg');
-var breakfast = new Product('img/breakfast.jpg');
-var bubblegum = new Product('img/bubblegum.jpg');
-var chair = new Product('img/chair.jpg');
-var cthulhu = new Product('img/cthulhu.jpg');
-var dogDuck = new Product('img/dog-duck.jpg');
-var dragon = new Product('img/dragon.jpg');
-var pen = new Product('img/pen.jpg');
-var petSweep = new Product('img/pet-sweep.jpg');
-var scissors = new Product('img/scissors.jpg');
-var shark = new Product('img/shark.jpg');
-var sweep = new Product('img/sweep.png');
-var tauntaun = new Product('img/tauntaun.jpg');
-var unicorn = new Product('img/unicorn.jpg');
-var usb = new Product('img/usb.gif');
-var waterCan = new Product('img/water-can.jpg');
-var wineGlass = new Product('img/wine-glass.jpg');
+function createProducts(){
+  new Product('Bag', 'img/bag.jpg');
+  new Product('Banana', 'img/banana.jpg');
+  new Product('Bathroom', 'img/bathroom.jpg');
+  new Product('Boots', 'img/boots.jpg');
+  new Product('Breakfast', 'img/breakfast.jpg');
+  new Product('Bubblegum', 'img/bubblegum.jpg');
+  new Product('Chair', 'img/chair.jpg');
+  new Product('Cthulhu', 'img/cthulhu.jpg');
+  new Product('Dog Duck', 'img/dog-duck.jpg');
+  new Product('Dragon', 'img/dragon.jpg');
+  new Product('Pen', 'img/pen.jpg');
+  new Product('Pet Sweep', 'img/pet-sweep.jpg');
+  new Product('Scissors', 'img/scissors.jpg');
+  new Product('Shark', 'img/shark.jpg');
+  new Product('Sweep', 'img/sweep.png');
+  new Product('Tauntaun', 'img/tauntaun.jpg');
+  new Product('Unicorn', 'img/unicorn.jpg');
+  new Product('USB', 'img/usb.gif');
+  new Product('Water Can', 'img/water-can.jpg');
+  new Product('Wine Glass', 'img/wine-glass.jpg');
+}
+
+createProducts();
 
 var indexList = [];
 
@@ -65,11 +70,34 @@ function displayThreeProducts(){
 
   var contentField = document.getElementsByClassName('vote-content')[0];
 
-  for (var i = 0;i < indexList.length;i++){
+  indexList.forEach(function(index){
     var picture = document.createElement('img');
-    picture.src = Product.allProducts[indexList[i]].filename;
-    contentField.appendChild(picture);
-  }
+    picture.src = Product.allProducts[index].filename;
+    contentField.append(picture);
+    picture.addEventListener('click', function(){
+      console.log(picture);
+      Product.allProducts[index].votes++;
+    });
+  });
+  // for (var i = 0;i < indexList.length;i++){
+  //   var picture = document.createElement('img');
+  //   Product.allProducts[indexList[i]].appearCount += 1;
+  //   picture.src = Product.allProducts[indexList[i]].filename;
+  //   contentField.append(picture);
+  // }
 }
 
 displayThreeProducts();
+
+// var displayedImages = document.getElementsByClassName('selection');
+// console.log(displayedImages[2]);
+
+// for (var i = 0; i < displayedImages.length;i++){
+//   displayedImages[i].addEventListener('click', function(){
+//     doSomething(i);
+//   });
+// }
+
+// function doSomething(index){
+//   console.log(index);
+// }
