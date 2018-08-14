@@ -77,7 +77,7 @@ function displayThreeProducts(){
 
   var contentField = document.getElementsByClassName('vote-content')[0];
 
-  
+
   indexList.forEach(function(index){
     var picture = document.createElement('img');
     Product.allProducts[index].appearCount++;
@@ -111,8 +111,12 @@ function renderList(){
   for (var i = 0; i < Product.allProducts.length;i++){
     var currProduct = Product.allProducts[i];
     var li = document.createElement('li');
+    var percLi = document.createElement('li');
+    var percentage = isNaN(currProduct.votes / currProduct.appearCount) ? 0 : currProduct.votes / currProduct.appearCount;
     li.textContent = `${currProduct.name}. Votes: ${currProduct.votes}. Appearances: ${currProduct.appearCount}.`;
+    percLi.textContent = `Percentage of choice: ${Math.floor(percentage * 100)}%`;
     ul.append(li);
+    ul.append(percLi);
   }
   field.append(ul);
 }
