@@ -107,6 +107,9 @@ function renderList(){
   while (field.firstChild){
     field.removeChild(field.firstChild);
   }
+  var statistic = document.createElement('h1');
+  statistic.textContent = 'Statistics';
+  field.append(statistic);
   for (var i = 0; i < Product.allProducts.length;i++){
     var ul = document.createElement('ul');
     var currProduct = Product.allProducts[i];
