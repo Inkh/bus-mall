@@ -107,8 +107,8 @@ function renderList(){
   while (field.firstChild){
     field.removeChild(field.firstChild);
   }
-  var ul = document.createElement('ul');
   for (var i = 0; i < Product.allProducts.length;i++){
+    var ul = document.createElement('ul');
     var currProduct = Product.allProducts[i];
     var li = document.createElement('li');
     var percLi = document.createElement('li');
@@ -117,6 +117,8 @@ function renderList(){
     percLi.textContent = `Percentage of choice: ${Math.floor(percentage * 100)}%`;
     ul.append(li);
     ul.append(percLi);
+    field.append(ul);
   }
-  field.append(ul);
 }
+
+renderList();

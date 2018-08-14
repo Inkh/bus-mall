@@ -2,24 +2,29 @@ header, main, footer {
   width: 100%;
   height: auto;
   vertical-align: top;
+  margin: 0px;
 }
 
 body {
   background-color: #eeeeee;
+  margin: 0px;
 }
 
 aside {
+  margin: 0px;
   background-color: #eeeeee;
-  height: 800px;
-  width: 22%;
+  height: 700px;
+  width: 25%;
   display: inline-block;
   border-right: 1px solid #a3a3a3;
-  /* text-align: center */
+  overflow: scroll;
 }
 
 aside ul {
   margin: 15px;
   line-height: 1.2;
+  font-family: 'Comfortaa', cursive, sans-serif;
+  color: #461953;
 }
 
 nav {
@@ -28,17 +33,26 @@ nav {
   background-color: #612574;
 }
 
+nav h1{
+  font-family: 'Monoton', cursive, sans-serif;
+  font-size: 48px;
+  color: #eeeeee;
+  line-height: 1.7;
+  margin-left: 15px;
+}
+
 footer {
   width: 100%;
   height: 80px;
   background-color: #612574;
 }
 .vote-wrapper {
-  margin-left: 1%;
+  /* margin-left: 1%; */
+  margin: 0px;
   vertical-align: top;
   display: inline-block;
-  width: 75%;
-  height: 800px;
+  width: 74.5%;
+  height: 700px;
   background-color: #eeeeee;
 }
 
@@ -54,7 +68,7 @@ footer {
 .vote-content img {
   display: inline-block;
   height: 80%;
-  width: 30%;
+  width: 25%;
   margin: 28px 15px;
   line-height: 80%;
   border: 1px solid #eeeeee;
@@ -80,9 +94,24 @@ footer {
 }
 
 .vote-desc {
+  box-sizing: border-box;
   vertical-align: top;
   height: 400px;
   width: 100%;
   display: inline-block;
-  background-color: #5688C7;
+  background-color: #f8f8f8;
+  padding: 10px;
+}
+
+.vote-desc h1 {
+  font-size: 48px;
+  font-family: 'Comfortaa', cursive, sans-serif;
+  text-align: center;
+  margin: 30px auto;
+}
+
+.vote-desc p {
+  font-size: 24px;
+  font-family: 'Comfortaa', cursive, sans-serif;
+  text-align: center;
 }
