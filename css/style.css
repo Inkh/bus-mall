@@ -123,3 +123,8 @@ footer {
   font-family: 'Comfortaa', cursive, sans-serif;
   text-align: center;
 }
+
+.vote-content canvas {
+  height: 100px;
+  width: 100px;
+}

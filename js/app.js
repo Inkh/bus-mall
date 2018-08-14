@@ -73,10 +73,7 @@ function displayThreeProducts(){
     indexList.splice(0,3);
   }
 
-  console.log(indexList);
-
   var contentField = document.getElementsByClassName('vote-content')[0];
-
 
   indexList.forEach(function(index){
     var picture = document.createElement('img');
@@ -84,7 +81,6 @@ function displayThreeProducts(){
     picture.src = Product.allProducts[index].filename;
     contentField.append(picture);
     picture.addEventListener('click', function(){
-      console.log(picture);
       Product.allProducts[index].votes++;
       clearNode();
       displayThreeProducts();
@@ -93,7 +89,51 @@ function displayThreeProducts(){
     });
   });
   if (voteCount === 24){
+    var namesList = [];
+    var votesList = [];
+    for (var i = 0; i < Product.allProducts.length;i++){
+      namesList.push(Product.allProducts[i].name);
+      votesList.push(Product.allProducts[i].votes);
+    }
     clearNode();
+    var chart = document.createElement('canvas');
+    chart.id = 'myChart';
+    contentField.append(chart);
+    console.log(chart);
+    var ctx = document.getElementById('myChart').getContext('2d');
+    console.log(ctx);
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: namesList,
+        datasets: [{
+          label: '# of Votes',
+          data: votesList, // these numbers seem important
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: 'rgb(0,0,0)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true,
+              suggestedMax: 6
+            }
+          }]
+        }
+      }
+    });
     var h1 = document.createElement('h1');
     h1.textContent = 'Thank you for participating!';
     contentField.append(h1);
@@ -116,7 +156,7 @@ function renderList(){
     var li = document.createElement('li');
     var percLi = document.createElement('li');
     var percentage = isNaN(currProduct.votes / currProduct.appearCount) ? 0 : currProduct.votes / currProduct.appearCount;
-    li.textContent = `${currProduct.name}. Votes: ${currProduct.votes}. Appearances: ${currProduct.appearCount}.`;
+    li.textContent = `${currProduct.name}. Votes: ${currProduct.votes}.`;
     percLi.textContent = `Percentage of choice: ${Math.floor(percentage * 100)}%`;
     ul.append(li);
     ul.append(percLi);
