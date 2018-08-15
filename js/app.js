@@ -1,8 +1,6 @@
 'use strict';
 
 console.log('link');
-var w = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-
 
 var caterpie = [
   [0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -42,10 +40,47 @@ var caterpie = [
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,12,12,12,4,4,13,0,0,0,0,0,0,0,0,0,0],
 ];
 
-for (var i = 0; i < caterpie.length;i++){
-  console.log(caterpie[i].length);
+function draw(){
+  var ctx = document.getElementById('bug').getContext('2d');
+  for (var i = 0; i < caterpie.length;i++){
+    console.log(i);
+    for (var j = 0; j < caterpie[i].length;j++){
+      if (caterpie[i][j] === 0){
+        ctx.fillStyle = 'rgba(0,0,0,0)';
+      } else if (caterpie[i][j] === 1){
+        ctx.fillStyle = '#8D3649';
+      } else if (caterpie[i][j] === 2){
+        ctx.fillStyle = '#00D600';
+      } else if (caterpie[i][j] === -1){
+        ctx.fillStyle = '#000000';
+      } else if (caterpie[i][j] === 3){
+        ctx.fillStyle = '#FFB525';
+      } else if (caterpie[i][j] === 4){
+        ctx.fillStyle = '#005A3D';
+      } else if (caterpie[i][j] === 5){
+        ctx.fillStyle = '#FF3F3F';
+      } else if (caterpie[i][j] === 6){
+        ctx.fillStyle = '#FF7C3A';
+      } else if (caterpie[i][j] === 7){
+        ctx.fillStyle = '#81F61D';
+      } else if (caterpie[i][j] === 8){
+        ctx.fillStyle = '#00AD33';
+      } else if (caterpie[i][j] === 9){
+        ctx.fillStyle = '#F9EE86';
+      } else if (caterpie[i][j] === 10){
+        ctx.fillStyle = '#F0CE92';
+      } else if (caterpie[i][j] === 11){
+        ctx.fillStyle = '#788444';
+      } else if (caterpie[i][j] === 12){
+        ctx.fillStyle = '#496247';
+      } else if (caterpie[i][j] === 13){
+        ctx.fillStyle = '#007C45';
+      }
+      ctx.fillRect(j * 5, i * 5, 5, 5);
+    }
+  }
 }
-
+draw();
 
 function Product(name, filename, votes = 0, appearCount = 0){
   this.name = name;
@@ -232,4 +267,3 @@ function renderList(){
 }
 
 renderList();
-
