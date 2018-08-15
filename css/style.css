@@ -5,6 +5,10 @@ header, main, footer {
   margin: 0px;
 }
 
+iframe {
+  display: none;
+}
+
 body {
   background-color: #eeeeee;
   margin: 0px;
