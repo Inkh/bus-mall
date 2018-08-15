@@ -2,6 +2,14 @@
 
 console.log('link');
 
+
+/*
+
+***********************************************************************************************************************
+******************************************************CATERPIE BLOCK***************************************************
+***********************************************************************************************************************
+
+*/
 var caterpie = [
   [0,1,1,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
   [1,1,3,3,1,0,0,0,0,0,0,1,1,3,3,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -41,9 +49,13 @@ var caterpie = [
 ];
 
 function draw(){
-  var ctx = document.getElementById('bug').getContext('2d');
+  var drawingBoard = document.createElement('canvas');
+  drawingBoard.id = 'bug';
+  drawingBoard.setAttribute('width', '155');
+  drawingBoard.setAttribute('height', '175');
+
+  var ctx = drawingBoard.getContext('2d');
   for (var i = 0; i < caterpie.length;i++){
-    console.log(i);
     for (var j = 0; j < caterpie[i].length;j++){
       if (caterpie[i][j] === 0){
         ctx.fillStyle = 'rgba(0,0,0,0)';
@@ -79,8 +91,17 @@ function draw(){
       ctx.fillRect(j * 5, i * 5, 5, 5);
     }
   }
+  var descField = document.getElementsByClassName('vote-desc')[0];
+  clearNode(descField);
+  descField.append(drawingBoard);
 }
-draw();
+/*
+
+***********************************************************************************************************************
+**********************************************END CATERPIE BLOCK*******************************************************
+***********************************************************************************************************************
+
+*/
 
 function Product(name, filename, votes = 0, appearCount = 0){
   this.name = name;
@@ -129,14 +150,15 @@ if (loadedProducts){
 var indexList = [];
 var voteCount = 0;
 
+function clearNode(node){
+  while (node.firstChild){
+    node.removeChild(node.firstChild);
+  }
+}
+
 //Create three randomly generated indices.
 function displayThreeProducts(){
   //Function for clearing node
-  function clearNode(){
-    while (contentField.firstChild){
-      contentField.removeChild(contentField.firstChild);
-    }
-  }
   var randIndexOne = Math.floor(Math.random() * Product.allProducts.length);
   var randIndexTwo = Math.floor(Math.random() * Product.allProducts.length);
   var randIndexThree = Math.floor(Math.random() * Product.allProducts.length);
@@ -170,7 +192,7 @@ function displayThreeProducts(){
     contentField.append(picture);
     picture.addEventListener('click', function(){
       Product.allProducts[index].votes++;
-      clearNode();
+      clearNode(contentField);
       displayThreeProducts();
       renderList();
       voteCount++;
@@ -183,7 +205,7 @@ function displayThreeProducts(){
       namesList.push(Product.allProducts[i].name);
       votesList.push(Product.allProducts[i].votes);
     }
-    clearNode();
+    clearNode(contentField);
     var chart = document.createElement('canvas');
     chart.id = 'myChart';
     contentField.append(chart);
@@ -234,11 +256,24 @@ function displayThreeProducts(){
         }
       }
     });
-    var h1 = document.createElement('h1');
-    h1.textContent = 'Thank you for participating!';
-    contentField.append(h1);
+    // var h1 = document.createElement('h1');
+    // h1.textContent = 'Thank you for participating!';
+    // contentField.append(h1);
 
+    //Store current info
     localStorage.setItem('products', JSON.stringify(Product.allProducts));
+
+    //Link to YT for bug cry
+    var cry = document.createElement('iframe');
+    cry.src = 'https://www.youtube.com/embed/0RVdhfvhfY4?autoplay=1';
+    cry.allow = 'autoplay';
+    contentField.append(cry);
+
+    //Display bug after a short delay
+    // var drawingBoard = document.createElement('canvas');
+    // drawingBoard.id = 'bug';
+    setTimeout(draw,2500);
+
   }
 }
 
