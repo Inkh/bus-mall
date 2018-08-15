@@ -63,11 +63,9 @@ footer {
   cursor: pointer;
 }
 
-/* #bug {
-  margin: 0 auto;
-  text-align: center;
-  display: none;
-} */
+#bug {
+  margin-top: 20px;
+}
 
 .vote-wrapper {
   /* margin-left: 1%; */

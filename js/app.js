@@ -48,6 +48,8 @@ var caterpie = [
   [0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,12,12,12,4,4,13,0,0,0,0,0,0,0,0,0,0],
 ];
 
+var descField = document.getElementsByClassName('vote-desc')[0];
+
 function draw(){
   var drawingBoard = document.createElement('canvas');
   drawingBoard.id = 'bug';
@@ -91,10 +93,20 @@ function draw(){
       ctx.fillRect(j * 5, i * 5, 5, 5);
     }
   }
-  var descField = document.getElementsByClassName('vote-desc')[0];
   clearNode(descField);
   descField.append(drawingBoard);
+  var instruction = document.createElement('h1');
+  instruction.textContent = 'A wild Caterpie appeared! Quickly now, capture it before it escapes!';
+  descField.append(instruction);
+
+  drawingBoard.addEventListener('click', function(){
+    clearNode(descField);
+    var h1 = document.createElement('h1');
+    h1.textContent = 'Oop, looks like you don\'t have a Pokéball just yet.. But that\'s not your fault. We\'re totally out of stock at the moment.';
+    descField.append(h1);
+  });
 }
+
 /*
 
 ***********************************************************************************************************************
@@ -185,6 +197,7 @@ function displayThreeProducts(){
 
   var contentField = document.getElementsByClassName('vote-content')[0];
 
+  //Add event listener for each image. Using forEach loop to create local scope to avoid hoisting issues.
   indexList.forEach(function(index){
     var picture = document.createElement('img');
     Product.allProducts[index].appearCount++;
@@ -198,6 +211,8 @@ function displayThreeProducts(){
       voteCount++;
     });
   });
+
+  //User is at the end of poll. Save data in localstorage and display easteregg
   if (voteCount === 24){
     var namesList = [];
     var votesList = [];
@@ -269,10 +284,16 @@ function displayThreeProducts(){
     cry.allow = 'autoplay';
     contentField.append(cry);
 
+    //Clear div and show pending text.
+    clearNode(descField);
+    var pendingText = document.createElement('h1');
+    pendingText.textContent = 'Wait.. Do you hear that?';
+    descField.append(pendingText);
+
     //Display bug after a short delay
-    // var drawingBoard = document.createElement('canvas');
-    // drawingBoard.id = 'bug';
     setTimeout(draw,2500);
+
+
 
   }
 }
