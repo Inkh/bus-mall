@@ -52,11 +52,12 @@ console.log(caterpie.length);
 
 
 console.log(w.length);
-function Product(name, filename){
+
+function Product(name, filename, votes = 0, appearCount = 0){
   this.name = name;
   this.filename = filename;
-  this.votes = 0;
-  this.appearCount = 0;
+  this.votes = votes;
+  this.appearCount = appearCount;
   Product.allProducts.push(this);
 }
 
@@ -86,7 +87,15 @@ function createProducts(){
   new Product('Wine Glass', 'img/wine-glass.jpg');
 }
 
-createProducts();
+var loadedProducts = JSON.parse(localStorage.getItem('products'));
+
+if (loadedProducts){
+  for (var i = 0; i < loadedProducts.length; i++){
+    new Product(loadedProducts[i].name, loadedProducts[i].filename, loadedProducts[i].votes, loadedProducts[i].appearCount);
+  }
+} else {
+  createProducts();
+}
 
 var indexList = [];
 var voteCount = 0;
@@ -199,6 +208,8 @@ function displayThreeProducts(){
     var h1 = document.createElement('h1');
     h1.textContent = 'Thank you for participating!';
     contentField.append(h1);
+
+    localStorage.setItem('products', JSON.stringify(Product.allProducts));
   }
 }
 
