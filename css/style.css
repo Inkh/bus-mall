@@ -5,6 +5,10 @@ header, main, footer {
   margin: 0px;
 }
 
+iframe {
+  display: none;
+}
+
 body {
   background-color: #eeeeee;
   margin: 0px;
@@ -54,6 +58,15 @@ footer {
   height: 80px;
   background-color: #612574;
 }
+
+#bug:hover {
+  cursor: pointer;
+}
+
+#bug {
+  margin-top: 20px;
+}
+
 .vote-wrapper {
   /* margin-left: 1%; */
   margin: 0px;
@@ -102,6 +115,7 @@ footer {
 }
 
 .vote-desc {
+  text-align: center;
   box-sizing: border-box;
   vertical-align: top;
   height: 400px;
