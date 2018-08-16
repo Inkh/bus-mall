@@ -96,7 +96,7 @@ function draw(){
   clearNode(descField);
   descField.append(drawingBoard);
   var instruction = document.createElement('h1');
-  instruction.textContent = 'A wild Caterpie appeared! Quickly now, capture it before it escapes!';
+  instruction.textContent = 'A wild Caterpie appeared! Quickly now trainer, capture it before it escapes!';
   descField.append(instruction);
 
   drawingBoard.addEventListener('click', function(){
