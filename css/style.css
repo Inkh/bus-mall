@@ -19,9 +19,11 @@ aside {
   background-color: #eeeeee;
   height: 700px;
   width: 25%;
-  display: inline-block;
+  /* display: inline-block; */
   border-right: 1px solid #a3a3a3;
   overflow: scroll;
+  float: left;
+  box-sizing: border-box;
 }
 
 aside ul {
@@ -72,7 +74,7 @@ footer {
   margin: 0px;
   vertical-align: top;
   display: inline-block;
-  width: 74.5%;
+  width: 75%;
   height: 700px;
   background-color: #eeeeee;
 }
